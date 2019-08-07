@@ -1,0 +1,88 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+	 	<title>The Cat Bank</title>
+		<meta name="description" content="The Cat Bank">
+		<meta name="author" content="Simona Winnekes">
+		<link rel="stylesheet" href="css/styles.css">
+		<script src="js/scripts.js"></script>
+		<script src="js/users.js"></script>
+	</head>
+
+	<body onload="contentNav()">
+		<div id="wrapper">
+
+			<header>
+				<h1><a href="index.html">The Cat Bank</a></h1>
+				<h2>Where we save your meowney!</h2>
+
+				<nav id="navigation">
+
+					<span class="signedIn">
+						<a href="#">Account details</a> || <a href="#">Deposit money</a> || <a href="#">Withdraw money</a> || <a href="#">Current balance</a> || <a href="#" onclick="status('logout')">Logout</a>
+					</span>
+					<span class="signedOut">
+						<a href="#" onclick="toggleContent('signUp')">sign up</a> || <a href="#" onclick="toggleContent('signIn')">sign in</a>
+					</span>
+
+				</nav>
+
+			</header>
+
+			<section id="forms" class="signedOut">
+					<div id="signUpForm" class="center">
+						<h1>Sign up</h1>
+							<form action="javascript:;" onsubmit="signUp(this)">
+								<label>First Name:<br />
+									<input type="text" name="firstName" autofocus required>
+								</label>
+								<label>
+									Last Name:<br />
+									<input type="text" name="lastName" required>
+								</label>
+								<label>
+									Your email address:<br />
+									<input type="email" name="email" required>
+								</label>
+								<label>
+									Your password:<br />
+									<input type="password" name="password" required>
+								</label>
+								<label><input type="submit" name="submit" value="Sign up"></label>
+							</form>
+					</div>
+
+					<div id="signInForm" class="center">
+					<h1>Sign in</h1>
+						<form action="javascript:;" onsubmit="signIn(this)">
+							<label>
+								Your email address:<br />
+								<input type="email" name="email" autofocus required>
+							</label>
+							<label>
+								Your password:<br />
+								<input type="password" name="password" required>
+							</label>
+							<label><input type="submit" name="submit" value="Sign in"></label>
+						</form>
+					</div>
+			</section>
+
+			<section id="content">
+				<div class="signedOut">
+					Welcome to <i>the</i> Bank for all your meowney related worries. What we offer:
+					<ul>
+						<li>deposit your meowney</li>
+						<li>withdraw your meowney</li>
+						<li>we will alert you if your funds are too low or you deposit a a large amount!</li> 
+					</ul>
+					<img src="img/fat-cat-money.jpg" class="center" />
+				</div>
+			</section>
+
+		</div>
+	</body>
+</html>

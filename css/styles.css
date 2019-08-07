@@ -1,0 +1,53 @@
+#wrapper {
+	width: 50%;
+    margin: 0 auto;                                                                                                                                                    
+	font-family: Arial;
+}
+
+header {
+	text-align: center;
+}
+
+nav {
+	padding: 10px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+label {
+	display: block;
+	padding-bottom: 20px;
+}
+
+footer {
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+section {
+
+}
+/** {
+	border: 1px solid black;
+}*/
+#forms {
+}
+#signUpForm {
+}
+
+#signInForm,#signedUp {
+
+}
+
+#content {
+	padding: 50px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+img {
+	display: block;
+}
