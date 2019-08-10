@@ -78,7 +78,7 @@ function toggleVisibility(state) {
     		eleErrorLoginFailed.classList.add("invisible");
 
 			eleSignUpForm.style.display = "";
-				eleSignInForm.style.display = "none";
+			eleSignInForm.style.display = "none";
 			break;
 
 		case "account":
@@ -110,9 +110,8 @@ function toggleVisibility(state) {
 }
 
 var userList = {};
-var currency = "€";
 var currentUser = {};
-
+var currency = "€";
 
 // setting up the user structure
 function User(firstName, lastName, email, password) {
@@ -155,12 +154,6 @@ function signUp(form) {
 
 function signIn(form) {
 
-	var eleFirstName = document.getElementsByClassName("dtFirstName");
-	var eleLastName = document.getElementsByClassName("dtLastName");	
-	var eleWholeName = document.getElementsByClassName("dtWholeName");
-	var eleEmail = document.getElementsByClassName("dtEmail");
-	var eleBalance = document.getElementsByClassName("dtBalance");
-
 	var eleWelcomeUser = document.getElementById("welcome-user");
 
 	var eleErrorLoginFailed = document.getElementById("error-login-failed");
@@ -174,34 +167,42 @@ function signIn(form) {
 		toggleVisibility("signedIn");
 
 		currentUser = new UserData(userList[form.email.value]);
-		console.log(currentUser);
-
-		for(i = 0; i<eleBalance.length;i++) {
-			eleBalance[i].innerHTML = currentUser.balance.toFixed(2) + currency; 
-		}
-
-		for(i = 0; i<eleWholeName.length;i++) {
-			eleWholeName[i].innerHTML = currentUser.firstName + " " + currentUser.lastName;
-		}
-
-		for(i = 0; i<eleFirstName.length;i++) {
-			eleFirstName[i].innerHTML = currentUser.firstName;
-		}
-
-		for(i = 0; i<eleLastName.length;i++) {
-			eleLastName[i].innerHTML = currentUser.lastName;
-		}
-
-		for(i = 0; i<eleEmail.length;i++) {
-			eleEmail[i].innerHTML = currentUser.email;
-		}
-
-		for(i = 0; i<eleBalance.length;i++) {
-			eleBalance[i].innerHTML = currentUser.balance.toFixed(2) + currency; 
-		}
+		setFieldsData(currentUser);
 	}
 }
 
+function setFieldsData(currentUser) {
+
+	var eleFirstName = document.getElementsByClassName("dtFirstName");
+	var eleLastName = document.getElementsByClassName("dtLastName");	
+	var eleWholeName = document.getElementsByClassName("dtWholeName");
+	var eleEmail = document.getElementsByClassName("dtEmail");
+	var eleBalance = document.getElementsByClassName("dtBalance");
+
+	for(i = 0; i<eleBalance.length;i++) {
+		eleBalance[i].innerHTML = currentUser.balance.toFixed(2) + currency; 
+	}
+
+	for(i = 0; i<eleWholeName.length;i++) {
+		eleWholeName[i].innerHTML = currentUser.firstName + " " + currentUser.lastName;
+	}
+
+	for(i = 0; i<eleFirstName.length;i++) {
+		eleFirstName[i].innerHTML = currentUser.firstName;
+	}
+
+	for(i = 0; i<eleLastName.length;i++) {
+		eleLastName[i].innerHTML = currentUser.lastName;
+	}
+
+	for(i = 0; i<eleEmail.length;i++) {
+		eleEmail[i].innerHTML = currentUser.email;
+	}
+
+	for(i = 0; i<eleBalance.length;i++) {
+		eleBalance[i].innerHTML = currentUser.balance.toFixed(2) + currency; 
+	}
+}
 
 // deposi a given amount into the user's account
 function balanceDeposit(form) {
