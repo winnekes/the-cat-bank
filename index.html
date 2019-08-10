@@ -9,31 +9,75 @@
 		<meta name="author" content="Simona Winnekes">
 		<link rel="stylesheet" href="css/styles.css">
 		<script src="js/scripts.js"></script>
-		<script src="js/users.js"></script>
 	</head>
 
-	<body onload="contentNav()">
+	<body onload="toggleVisibility('signedOut');">
 		<div id="wrapper">
 
 			<header>
 				<h1><a href="index.html">The Cat Bank</a></h1>
 				<h2>Where we save your meowney!</h2>
 
-				<nav id="navigation">
-
+				<nav>
 					<span class="signedIn">
-						<a href="#">Account details</a> || <a href="#">Deposit money</a> || <a href="#">Withdraw money</a> || <a href="#">Current balance</a> || <a href="#" onclick="status('logout')">Logout</a>
+						<a href="#" onclick="toggleVisibility('account')">Account details</a> || <a href="#" onclick="toggleVisibility('balance-deposit')">Deposit money</a> || <a href="#" onclick="toggleVisibility('balance-withdraw')">Withdraw money</a> || <a href="#" onclick="toggleVisibility('signingOut')">Logout</a>
 					</span>
 					<span class="signedOut">
-						<a href="#" onclick="toggleContent('signUp')">sign up</a> || <a href="#" onclick="toggleContent('signIn')">sign in</a>
+						<a href="#" onclick="toggleVisibility('signingUp')">sign up</a> || <a href="#" onclick="toggleVisibility('signingIn')">sign in</a>
 					</span>
-
 				</nav>
 
 			</header>
+			<section id="content">
+				<div id="signingOut" class="signedOut invisible">
+					<b>You have signed out.</b>
+				</div>
 
-			<section id="forms" class="signedOut">
-					<div id="signUpForm" class="center">
+				<div id="welcome" class="signedOut">
+					Welcome to <i>the</i> Bank for all your meowney related worries. What we offer:
+					<ul>
+						<li>deposit your meowney</li>
+						<li>withdraw your meowney</li>
+						<li>we will alert you if your funds are too low or you deposit a a large amount!</li> 
+					</ul>
+					<img src="img/fat-cat-money.jpg" class="center" />
+				</div>
+
+				<div id="welcome-user" class="signedIn invisible">
+					<h1>Welcome!</h2>
+					You are signed in, <span class="dtWholeName"></span>.<br />
+					Please use the menu to interact with your account.
+					<img src="img/lucky-cat.jpg" class="center" />
+				</div>
+				<div id="account-details" class="signedIn invisible">
+					<h1>Your account details</h1>
+					First name: <span class="dtFirstName"></span><br />
+					Last name: <span class="dtLastName"></span><br />
+					Email address: <span class="dtEmail"></span><br />
+					<br />
+					<b>Your current balance: <span class="dtBalance"></span></b><br />
+
+				</div>
+				<div id="error-user-exists" class="signedOut invisible">
+					<h1>Oops!</h1>
+					A user account with this email address already seems to exist. <br />
+					Did you already sign up? Then please <a href='#' onclick="toggleVisibility('signIn')">sign in</a>!
+
+				</div>
+
+				<div id="error-login-failed" class="signedOut invisible">
+					<h1>Oops!</h1>
+					Please check your input: it's either the wrong email address or wrong password.
+				</div>
+				<div id="error-balance-negative" class="signedIn invisible">
+					<h1>Oops!</h1>
+					I apologise, we do not offer an overdraft on your account. You cannot withdraw more meowney than you have deposited with us.
+				</div>
+			</section>
+
+			<section id="userForms" class="invisible">
+
+					<div id="signUpForm" class="signedOut center">
 						<h1>Sign up</h1>
 							<form action="javascript:;" onsubmit="signUp(this)">
 								<label>First Name:<br />
@@ -55,7 +99,7 @@
 							</form>
 					</div>
 
-					<div id="signInForm" class="center">
+					<div id="signInForm" class="signedOut center">
 					<h1>Sign in</h1>
 						<form action="javascript:;" onsubmit="signIn(this)">
 							<label>
@@ -71,18 +115,33 @@
 					</div>
 			</section>
 
-			<section id="content">
-				<div class="signedOut">
-					Welcome to <i>the</i> Bank for all your meowney related worries. What we offer:
-					<ul>
-						<li>deposit your meowney</li>
-						<li>withdraw your meowney</li>
-						<li>we will alert you if your funds are too low or you deposit a a large amount!</li> 
-					</ul>
-					<img src="img/fat-cat-money.jpg" class="center" />
-				</div>
-			</section>
+			<section id="balanceForms">
+					<div id="balanceWithdrawForm" class="signedIn invisible">
+						<h1>Withdraw meowney</h1>						
+						<b>Your current balance: <span class="dtBalance"></span></b><br /><br />
 
+						<form action="javascript:;" onsubmit="balanceWithdraw(this)">
+							<label>
+								How much do you wish to withdraw?<br />
+								<input type="number" name="amount" min="0" autofocus required>
+							</label>
+							<label><input type="submit" name="submit" value="Withdraw now"></label>
+						</form>
+					</div>
+
+					<div id="balanceDepositForm" class="signedIn invisible">
+						<h1>Deposit meowney</h1>
+						<b>Your current balance: <span class="dtBalance"></span></b><br /><br />
+
+						<form action="javascript:;" onsubmit="balanceDeposit(this)">
+							<label>
+								How much do you wish to deposit?<br />
+								<input type="number" name="amount" min="0" autofocus required>
+							</label>
+							<label><input type="submit" name="submit" value="Deposit now"></label>
+						</form>
+					</div>
+			</section>
 		</div>
 	</body>
 </html>

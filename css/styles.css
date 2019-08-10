@@ -23,23 +23,9 @@ footer {
 	padding-top: 100px;
 	padding-bottom: 100px;
 }
+
 section {
-
-}
-/** {
-	border: 1px solid black;
-}*/
-#forms {
-}
-#signUpForm {
-}
-
-#signInForm,#signedUp {
-
-}
-
-#content {
-	padding: 50px;
+	margin-top: 20px;
 }
 
 .center {
@@ -48,6 +34,14 @@ section {
   width: 50%;
 }
 
+.invisible {
+	display: none;
+}
+
 img {
 	display: block;
+}
+
+#signingOut {
+	margin-bottom: 20px;
 }
