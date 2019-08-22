@@ -1,6 +1,6 @@
 
-// depending on the user's status show different content.
-// possible states: signedIn, signedOut, signingOut
+// Depending on the user's status toggle different content.
+// Possible states: signedIn, signedOut, signingOut
 function toggleVisibility(state) {
 
 	var eleSignedIn = document.getElementsByClassName("signedIn");
@@ -115,7 +115,7 @@ var userList = {};
 var currentUser = {};
 var currency = "€";
 
-// setting up the user structure
+// setting up the structure of an user
 function User(firstName, lastName, email, password, balance) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -140,7 +140,7 @@ function signUp(form) {
     	var user = new User(form.firstName.value, form.lastName.value, form.email.value, form.password.value);
 		userList[form.email.value] = user;
 
-		// sign in the user in immediately after signing up
+		// sign in the user immediately after signing up
   		signIn(form);
 		checkBalance();
     }
@@ -152,6 +152,7 @@ function signIn(form) {
 
 	var eleErrorLoginFailed = document.getElementById("error-login-failed");
 
+	// check if the user exists
     if((!userList[form.email.value]) || (userList[form.email.value]['password'] === !form.password.value)) {
 		eleErrorLoginFailed.classList.remove("invisible");
 	} 
@@ -165,6 +166,7 @@ function signIn(form) {
 	}
 }
 
+// display the user's data (name, email, balance) in defined elements
 function setFieldsData(currentUser) {
 
 	var eleFirstName = document.getElementsByClassName("dtFirstName");
@@ -198,7 +200,7 @@ function setFieldsData(currentUser) {
 	}
 }
 
-// deposi a given amount into the user's account
+// deposit a given amount into the user's account
 function balanceDeposit(form) {
 
 	var eleBalance = document.getElementsByClassName("dtBalance");
@@ -245,6 +247,7 @@ function balanceWithdraw(form) {
 	checkBalance();
 }
 
+// simple warning to the user if his balance is less than 100€
 function checkBalance() {
 	console.log(currentUser);
 	if(currentUser.balance < 100) {
