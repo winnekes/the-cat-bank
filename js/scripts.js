@@ -25,6 +25,8 @@ function toggleVisibility(state) {
 	switch(state) {
 		case "signedIn":
 			eleAccountDetails.classList.add("invisible");
+			eleBalanceDepositForm.classList.add("invisible");
+			eleBalanceWithdrawForm.classList.add("invisible");
 
 	        for(var i = 0; i < eleSignedIn.length; i++) {
 	        	eleSignedIn[i].style.display = "";     	
@@ -114,21 +116,13 @@ var currentUser = {};
 var currency = "€";
 
 // setting up the user structure
-function User(firstName, lastName, email, password) {
+function User(firstName, lastName, email, password, balance) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
-    this.balance = 0;
+    this.balance = 0; 
  }
-
-function UserData(user) {
-	this.firstName = user.firstName;
-    this.lastName = user.lastName;
-    this.email = user.email;
-    this.password = user.password;
-    this.balance = user.balance;
-}
 
 
 // take user's input and create a new user
@@ -165,9 +159,9 @@ function signIn(form) {
     else {
 		eleWelcomeUser.classList.remove("invisible");
 		toggleVisibility("signedIn");
-
-		currentUser = new UserData(userList[form.email.value]);
+		currentUser = userList[form.email.value];
 		setFieldsData(currentUser);
+		console.log(currentUser)
 	}
 }
 
@@ -252,6 +246,7 @@ function balanceWithdraw(form) {
 }
 
 function checkBalance() {
+	console.log(currentUser);
 	if(currentUser.balance < 100) {
 		console.log("Please note that you have less than 100" + currency + " in your account, you have exactly " + currentUser.balance + currency + " available to you.");
 	} 
