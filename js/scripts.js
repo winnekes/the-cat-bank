@@ -143,6 +143,7 @@ function signUp(form) {
 		// sign in the user immediately after signing up
   		signIn(form);
 		checkBalance();
+		document.getElementById("signUp").reset();
     }
 }
 
@@ -162,7 +163,8 @@ function signIn(form) {
 		toggleVisibility("signedIn");
 		currentUser = userList[form.email.value];
 		setFieldsData(currentUser);
-		console.log(currentUser)
+		console.log(currentUser);
+		document.getElementById("signIn").reset();
 	}
 }
 
