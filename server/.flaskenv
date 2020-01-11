@@ -1,1 +1,2 @@
 FLASK_APP=index.py
+JWT_AUTH_USERNAME_KEY=email
